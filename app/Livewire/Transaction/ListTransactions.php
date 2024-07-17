@@ -2,10 +2,11 @@
 
 namespace App\Livewire\Transaction;
 
-use App\Models\Transaction;
-use Livewire\Attributes\Title;
 use Livewire\Component;
+use App\Models\Transaction;
+use Livewire\Attributes\Url;
 use Livewire\WithPagination;
+use Livewire\Attributes\Title;
 
 #[Title('Transactions')]
 class ListTransactions extends Component
@@ -95,6 +96,7 @@ class ListTransactions extends Component
 
     public function render()
     {
+        
         $query = Transaction::with('owner')->get()->toquery();
 
         // if ($this->memb_type != '') {

@@ -1,11 +1,11 @@
 <nav class="h-full w-64 p-4  border-r-4 ">
     <div class="flex h-screen flex-col">
-        <div class="p-2 rounded bg-green-400 text-center text-xl">Sabah Society Membership</div>
+        <div class="p-2 py-4 rounded bg-blue-400 text-center text-xl">My Asset Vault</div>
             <ul class="p-2" >
-                <li class="border-b mb-2"> <a wire:navigate href="{{ route('party.listing') }}" @class(['text-blue-600 font-semibold' => request()->is('home')])>All Parties</a></li>
-                <li> <a wire:navigate href="/ord" @class(['text-blue-600 font-semibold' => request()->is('ord')])>Ordinary Members</a></li>
-                <li> <a wire:navigate href="/lif" @class(['text-blue-600 font-semibold' => request()->is('lif')])>Life Members</a></li>
-                <li> <a wire:navigate href="/stu" @class(['text-blue-600 font-semibold' => request()->is('stu')])>Student Members</a></li>
+                <li class="border-b mb-2"> <a wire:navigate href="{{ route('party.listing') }}" @class(['text-blue-600 font-semibold' => request()->is('home')])>Assets & Liabilities</a></li>
+                <li> <a wire:navigate href="/ord" @class(['text-blue-600 font-semibold' => request()->is('ord')])>Our Property</a></li>
+                <li> <a wire:navigate href="/lif" @class(['text-blue-600 font-semibold' => request()->is('lif')])>Our Shares</a></li>
+                <li> <a wire:navigate href="/stu" @class(['text-blue-600 font-semibold' => request()->is('stu')])>Our Liabilities</a></li>
                 <li> <a wire:navigate href="/inst" @class(['text-blue-600 font-semibold' => request()->is('inst')])>Institutional Members</a></li>
 
                 <br>

@@ -5,9 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Society Members | {{ $title ?? 'Page Title' }}</title>
+    <title>My Asset Vault | {{ $title ?? 'Page Title' }}</title>
     <link rel="icon" href="{{ asset('images/favicon.ico') }}?v={{ date('YmdHis') }}">
-    
+ 
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
     <link href="https://unpkg.com/@tailwindcss/forms@0.2/dist/forms.min.css" rel="stylesheet">
     <!-- <link rel="preconnect" href="https://fonts.bunny.net"> -->
