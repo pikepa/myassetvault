@@ -14,7 +14,6 @@ class UserPolicy
         if ($user->role->value === 'superadmin' || $user->role->value === 'admin') {
             return true; // Allow deletion
         }
-
         return false; // Deny deletion    }
     }
 

@@ -3,6 +3,7 @@
 test('when included in a component it contains necessary elements', function () {
     $this->signIn();
     $this->get('/user/listing')->assertOk()
+       ->assertSee('Logged in as:')
        ->assertSee('Users Listing')
         ->assertSee('Our Property')
         ->assertDontSee('All Users')

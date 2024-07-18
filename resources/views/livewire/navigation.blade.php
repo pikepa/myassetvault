@@ -2,7 +2,7 @@
     <div class="flex h-screen flex-col">
         <div class="p-2 py-4 rounded bg-blue-400 text-center text-xl">My Asset Vault</div>
             <ul class="p-2" >
-                <li class="border-b mb-2"> <a wire:navigate href="{{ route('party.listing') }}" @class(['text-blue-600 font-semibold' => request()->is('home')])>Assets & Liabilities</a></li>
+                <li class="border-b mb-2"> <a wire:navigate href="{{ route('asset.listing') }}" @class(['text-blue-600 font-semibold' => request()->is('home')])>Assets & Liabilities</a></li>
                 <li> <a wire:navigate href="/ord" @class(['text-blue-600 font-semibold' => request()->is('ord')])>Our Property</a></li>
                 <li> <a wire:navigate href="/lif" @class(['text-blue-600 font-semibold' => request()->is('lif')])>Our Shares</a></li>
                 <li> <a wire:navigate href="/stu" @class(['text-blue-600 font-semibold' => request()->is('stu')])>Our Liabilities</a></li>

@@ -19,13 +19,14 @@ class DatabaseSeeder extends Seeder
             'role' => 'superadmin',
         ]);
         \App\Models\User::factory()->create([
-            'name' => 'SabahSocAdmin',
-            'email' => 'sabahsoc@gmail.com',
-            'password' => bcrypt('Membership2024'),
+            'name' => 'Admin',
+            'email' => 'myadmin@myassetvault.com',
+            'password' => bcrypt('password'),
             'role' => 'admin',
         ]);
 
         //       \App\Models\Party::factory(10)->create();
-        \App\Models\Transaction::factory(10)->create();
+        \App\Models\Party::factory(10)->create();
+        \App\Models\Asset::factory(20)->create();
     }
 }
