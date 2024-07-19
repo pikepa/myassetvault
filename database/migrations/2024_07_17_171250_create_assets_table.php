@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -20,7 +21,7 @@ return new class extends Migration
             $table->text('location');
             $table->integer('qty')->default(1);
             $table->bigInteger('acquired_value');
-            $table->integer('owner_id');
+            $table->foreignIdFor(User::class)->constrained();
             $table->string('status');
             $table->timestamps();
         });

@@ -3,10 +3,11 @@
 namespace App\Livewire\Asset;
 
 use App\Models\Asset;
-use Livewire\Component;
-use Livewire\Attributes\Url;
-use Livewire\WithPagination;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Title;
+use Livewire\Attributes\Url;
+use Livewire\Component;
+use Livewire\WithPagination;
 
 #[Title('Asset')]
 class ListAssets extends Component
@@ -60,10 +61,9 @@ class ListAssets extends Component
             //     $query->where('name', 'like', '%'.$this->search.'%');
             // });
             : $query->where('name', 'like', '%'.$this->search.'%')
-                ->orWhere('location','like', '%'.$this->search.'%')
-                ->orWhere('status','like', '%'.$this->search.'%')
-                ->orWhere('asset_type','like', '%'.$this->search.'%')
-            ;
+                ->orWhere('location', 'like', '%'.$this->search.'%')
+                ->orWhere('status', 'like', '%'.$this->search.'%')
+                ->orWhere('asset_type', 'like', '%'.$this->search.'%');
     }
 
     protected function applyFilter($query)
@@ -89,15 +89,15 @@ class ListAssets extends Component
 
     public function render()
     {
-        
-        $query = Asset::with('owner')->get()->toquery();
-
+        //  $this->authorize('viewAny', Asset::class);
+        //  $query = auth->user->assetsAsset::with('owner')->get()->toquery();
+        $query = Auth::user()->assets->toquery();
         // if ($this->memb_type != '') {
         //     $query = $this->applyFilter($query);
         // }
         $query = $this->applySearch($query);
         $query = $this->applySorting($query);
-        
+
         return view('livewire.asset.list-assets', [
             'assets' => $query->paginate(12),
         ]);
