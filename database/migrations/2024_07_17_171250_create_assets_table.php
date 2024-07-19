@@ -15,8 +15,7 @@ return new class extends Migration
         Schema::create('assets', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('asset_type')->nullable();
-            $table->string('asset_class')->nullable();
+            $table->string('asset_type');
             $table->text('description');
             $table->text('location');
             $table->integer('qty')->default(1);

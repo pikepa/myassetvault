@@ -9,7 +9,7 @@ use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-#[Title('Asset')]
+#[Title('Asset Listing')]
 class ListAssets extends Component
 {
     use WithPagination;

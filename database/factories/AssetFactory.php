@@ -23,7 +23,6 @@ class AssetFactory extends Factory
             'name' => fake()->sentence(3),
             'description' => fake()->paragraph(2),
             'user_id' => User::factory()->create(),
-            'asset_class' => fake()->randomElement(['Asset', 'Liability']),
             'asset_type' => fake()->randomElement(AssetType::class),
             'location' => fake()->randomElement(['AUS', 'UK', 'UAE', 'SA']),
             'qty' => fake()->numberBetween($min = 1, $max = 50),
