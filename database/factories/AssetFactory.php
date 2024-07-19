@@ -2,11 +2,9 @@
 
 namespace Database\Factories;
 
-use Carbon\Carbon;
-use App\Models\User;
-use App\Enums\Assets\AssetType;
 use App\Enums\Assets\AssetStatus;
-use Illuminate\Support\Facades\Auth;
+use App\Enums\Assets\AssetType;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -24,12 +22,12 @@ class AssetFactory extends Factory
         return [
             'name' => fake()->sentence(3),
             'description' => fake()->paragraph(2),
-            'owner_id' => User::first()->id,
-            'asset_class' => fake()->randomElement(['Asset','Liability']),
+            'user_id' => User::factory()->create(),
+            'asset_class' => fake()->randomElement(['Asset', 'Liability']),
             'asset_type' => fake()->randomElement(AssetType::class),
-            'location' => fake()->randomElement(['AUS','UK', 'UAE', 'SA']),
+            'location' => fake()->randomElement(['AUS', 'UK', 'UAE', 'SA']),
             'qty' => fake()->numberBetween($min = 1, $max = 50),
-            'acquired_value' => (fake()->numberBetween($min = 1, $max = 50)*100),
+            'acquired_value' => (fake()->numberBetween($min = 1, $max = 50) * 100),
             'status' => fake()->randomElement(AssetStatus::class),
         ];
     }

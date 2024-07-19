@@ -1,4 +1,4 @@
-<x-listings.header name="Asset & Liability">
+<x-listings.header name="Owner Asset & Liability">
     <!-- search And Add Button -->
       <x-asset.search />
 
@@ -34,10 +34,6 @@
                             <div>Status</div>
                         </x-sorting.sortable>
                     </th>
-                    <th class="p-3 text-left text-sm font-semibold text-gray-900">
-                            <div>Owner Name </div>
-                    </th>
-
 
                 </tr>
             </thead>
@@ -72,14 +68,6 @@
                     </div>
                     </td>
                     
-                    <td class="whitespace-nowrap p-3 ">
-                        <div
-                        class='rounded-full py-0.5 pl-4 pr-4 inline-flex font-medium text-sm  text-{{ $asset->status }}-600  bg-green-100 opacity-75'>
-                        <div class="flex gap-1">{{ $asset->owner->name }} </div>
-                    </div>
-                </td>
-                
-
                     <!-- Button Dropdown -->
                     <td class="whitespace-nowrap p-3 text-sm">
                         <!-- Drop down Elipsis menu alpine ui-->

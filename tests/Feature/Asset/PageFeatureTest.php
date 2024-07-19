@@ -1,18 +1,17 @@
 <?php
 
-use Carbon\Carbon;
-use App\Models\Asset;
-use Livewire\Livewire;
-use App\Models\Transaction;
-use App\Livewire\Navigation;
 use App\Livewire\Asset\ListAssets;
+use App\Livewire\Navigation;
+use App\Models\Asset;
+use Illuminate\Support\Facades\Auth;
+use Livewire\Livewire;
 
 beforeEach(function () {
     $this->signIn();
 });
 
 it('an auth user can load the Assets Listing Page', function () {
-    Asset::factory()->create();
+    Asset::factory()->create(['user_id' => Auth::user()->id]);
     $this->get('/asset/listing')->assertStatus(200)
     ->assertSeeLivewire(Navigation::class)
     ->assertSee('Asset & Liability Listing')
@@ -25,11 +24,20 @@ it('an auth user can load the Assets Listing Page', function () {
     ->assertSee('Owner');
 });
 
-it('allows for a search on name', function () {
-    $itemA = Asset::factory()->create();
-    $itemB = Asset::factory()->create();
+test('it only displays assets for the signed in user', function () {
+    $assetControl = Asset::factory()->create(['user_id' => Auth::user()->id]);
+    $assetRandom = Asset::factory()->create();
 
-    
+    $response = $this->get('/asset/listing')
+        ->assertStatus(200);
+    $response->assertSee($assetControl->name); // Adjust the count based on your test data
+    $response->assertDontSee($assetRandom->name); // Adjust the count based on your test data
+});
+
+it('allows for a search on name', function () {
+    $itemA = Asset::factory()->create(['user_id' => Auth::user()->id]);
+    $itemB = Asset::factory()->create(['user_id' => Auth::user()->id]);
+
     Livewire::test(ListAssets::class)
         ->assertOk()
         ->assertSee($itemA->name)
@@ -43,8 +51,8 @@ it('allows for a search on name', function () {
 });
 
 test('a user can sort records by name', function () {
-    $item1 = Asset::factory()->create(['name' => 'fred']);
-    $item2 = Asset::factory()->create(['name' => 'xred']);
+    $item1 = Asset::factory()->create(['name' => 'fred', 'user_id' => Auth::user()->id]);
+    $item2 = Asset::factory()->create(['name' => 'xred', 'user_id' => Auth::user()->id]);
     Livewire::test(ListAssets::class)
         ->assertSeeInOrder([$item1->name, $item2->name])
         ->call('sortBy', 'name')
@@ -54,8 +62,8 @@ test('a user can sort records by name', function () {
 });
 
 test('a user can sort records by asset type', function () {
-    $trans1 = Asset::factory()->create(['asset_type' => 'gold']);
-    $trans2 = Asset::factory()->create(['asset_type' => 'shares']);
+    $trans1 = Asset::factory()->create(['asset_type' => 'gold', 'user_id' => Auth::user()->id]);
+    $trans2 = Asset::factory()->create(['asset_type' => 'shares', 'user_id' => Auth::user()->id]);
     Livewire::test(Listassets::class)
             ->assertSeeInOrder(['Gold', 'Shares'])
             ->call('sortBy', 'asset_type')
@@ -65,8 +73,8 @@ test('a user can sort records by asset type', function () {
 });
 
 test('a user can sort records by Location', function () {
-    $trans1 = Asset::factory()->create(['location' => 'SA']);
-    $trans2 = Asset::factory()->create(['location' => 'UAE']);
+    $trans1 = Asset::factory()->create(['location' => 'SA', 'user_id' => Auth::user()->id]);
+    $trans2 = Asset::factory()->create(['location' => 'UAE', 'user_id' => Auth::user()->id]);
     Livewire::test(ListAssets::class)
             ->assertSeeInOrder([$trans1->location, $trans2->location])
             ->call('sortBy', 'location')
@@ -76,13 +84,12 @@ test('a user can sort records by Location', function () {
 });
 
 test('a user can sort records by status', function () {
-    $trans1 = Asset::factory()->create(['status' => 'draft']);
-    $trans2 = Asset::factory()->create(['status' => 'retired']);
+    $trans1 = Asset::factory()->create(['status' => 'draft', 'user_id' => Auth::user()->id]);
+    $trans2 = Asset::factory()->create(['status' => 'retired', 'user_id' => Auth::user()->id]);
     Livewire::test(ListAssets::class)
-            ->assertSeeInOrder([$trans1->status, $trans2->status])
+            ->assertSeeInOrder(['Draft', 'Retired'])
             ->call('sortBy', 'status')
-            ->assertSeeInOrder([$trans2->status, $trans1->status])
+            ->assertSeeInOrder(['Retired', 'Draft'])
             ->call('sortBy', 'status')
-            ->assertSeeInOrder([$trans1->status, $trans2->status]);
+            ->assertSeeInOrder(['Draft', 'Retired']);
 });
-
