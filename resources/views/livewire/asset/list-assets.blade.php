@@ -5,7 +5,7 @@
     <div class="relative">
         <table class="min-w-full table-fixed divide-y divide-gray-300 text-gray-800">
             <thead>
-                Name
+                Asset Type Goes Here
                 <tr class="space-x-4">
                     <th class="p-3 text-left text-sm font-semibold text-gray-900">
                         <x-sorting.sortable column="asset_type" :$sortCol :$sortAsc>

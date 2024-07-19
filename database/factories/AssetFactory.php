@@ -24,7 +24,7 @@ class AssetFactory extends Factory
         return [
             'name' => fake()->sentence(3),
             'description' => fake()->paragraph(2),
-            'owner_id' => User::first()->id,
+            'owner_id' => fake()->numberBetween($min = 1, $max = 2),
             'asset_class' => fake()->randomElement(['Asset','Liability']),
             'asset_type' => fake()->randomElement(AssetType::class),
             'location' => fake()->randomElement(['AUS','UK', 'UAE', 'SA']),
