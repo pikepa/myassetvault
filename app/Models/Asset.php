@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\User;
+use Illuminate\Support\Number;
 use App\Enums\Assets\AssetType;
 use App\Enums\Assets\AssetStatus;
 use Illuminate\Database\Eloquent\Model;
@@ -17,6 +18,10 @@ class Asset extends Model
         'status' => AssetStatus::class,
     ];
 
+    public function acquiredValueForHumans()
+    {
+        return Number::currency($this->acquired_value);
+    }
     public function owner(): BelongsTo
     {
         return $this->belongsTo(User::class, 'owner_id');

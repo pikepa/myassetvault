@@ -28,6 +28,8 @@ class AssetFactory extends Factory
             'asset_class' => fake()->randomElement(['Asset','Liability']),
             'asset_type' => fake()->randomElement(AssetType::class),
             'location' => fake()->randomElement(['AUS','UK', 'UAE', 'SA']),
+            'qty' => fake()->numberBetween($min = 1, $max = 50),
+            'acquired_value' => (fake()->numberBetween($min = 1, $max = 50)*100),
             'status' => fake()->randomElement(AssetStatus::class),
         ];
     }

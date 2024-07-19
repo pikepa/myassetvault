@@ -26,8 +26,8 @@
                     <th class="p-3 text-left text-sm font-semibold text-gray-900">
                             <div>Qty</div>
                     </th>
-                    <th class="p-3 text-left text-sm font-semibold text-gray-900">
-                            <div>Value</div>
+                    <th class="p-3 text-right text-sm font-semibold text-gray-900">
+                            <div>Acquired Value</div>
                     </th>
                     <th class="p-3 text-left text-sm font-semibold text-gray-900">
                         <x-sorting.sortable column="status" :$sortCol :$sortAsc>
@@ -63,7 +63,7 @@
                         <div class="flex gap-1">{{ $asset->qty}}</div>
                     </td>
                     <td class="whitespace-nowrap p-3 text-sm">
-                        <div class="flex gap-1"></div>
+                        <div class="flex flex-row-reverse gap-1">{{ $asset->acquiredValueForHumans() }}</div>
                     </td>
                     <td class="whitespace-nowrap p-3 text-sm">
                         <div

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('description');
             $table->text('location');
             $table->integer('qty')->default(1);
+            $table->bigInteger('acquired_value');
             $table->integer('owner_id');
             $table->string('status');
             $table->timestamps();
