@@ -89,17 +89,19 @@ class ListAssets extends Component
 
     public function render()
     {
-        //  $this->authorize('viewAny', Asset::class);
+        // Original Query 
         //  $query = auth->user->assetsAsset::with('owner')->get()->toquery();
         $query = Auth::user()->assets->toquery();
-        // if ($this->memb_type != '') {
-        //     $query = $this->applyFilter($query);
-        // }
+ 
         $query = $this->applySearch($query);
         $query = $this->applySorting($query);
 
         return view('livewire.asset.list-assets', [
             'assets' => $query->paginate(12),
         ]);
+    }
+    public function mount($assetType = null)
+    {
+
     }
 }
