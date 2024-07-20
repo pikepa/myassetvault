@@ -15,6 +15,7 @@ class ListAssets extends Component
     use WithPagination;
 
     public $search = '';
+    public $asset_type = '';
 
     #[Url]
     public $sortCol = 'created_at';
@@ -93,6 +94,7 @@ class ListAssets extends Component
         //  $query = auth->user->assetsAsset::with('owner')->get()->toquery();
         $query = Auth::user()->assets->toquery();
  
+        $query = $this->applyFilter($query);
         $query = $this->applySearch($query);
         $query = $this->applySorting($query);
 
@@ -100,8 +102,8 @@ class ListAssets extends Component
             'assets' => $query->paginate(12),
         ]);
     }
-    public function mount($assetType = null)
+    public function mount($type = '')
     {
-
+        $this->asset_type  = $type;
     }
 }

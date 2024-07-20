@@ -28,7 +28,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/transactions/index', ListTransactions::class)->name('transaction.listing');
     Route::get('/transactions/add', CreateTransaction::class)->name('transaction.add');
     Route::get('/transactions/edit/{trans}', CreateTransaction::class)->name('transaction.edit');
-    Route::get('/asset/listing/', ListAssets::class)->name('asset.listing');
+    Route::get('/asset/listing/{type?}', ListAssets::class)->name('asset.listing');
     Route::get('/user/listing', UserListing::class)->name('user.listing');
     Route::get('/user/create', CreateUser::class)->name('user.create');
     Route::get('/user/edit/{user}', CreateUser::class)->name('user.with.id');
