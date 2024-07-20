@@ -21,7 +21,7 @@ Route::post('login', [LoginController::class, 'store'])->name('login.store');
 Route::post('logout', LogoutController::class)->middleware('auth')->name('logout');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/home', Index::class)->middleware('auth')->name('party.listing');
+    Route::get('/home', ListAssets::class)->middleware('auth')->name('party.listing');
     Route::get('/add', CreateParty::class);
     Route::get('/edit/{party}', CreateParty::class);
     Route::get('/{memb}', Index::class)->name('party.index.select');

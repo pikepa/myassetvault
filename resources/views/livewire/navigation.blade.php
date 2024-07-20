@@ -1,13 +1,26 @@
 <nav class="h-full w-64 p-4  border-r-4 ">
     <div class="flex h-screen flex-col">
         <div class="p-2 py-4 rounded bg-blue-400 text-center text-xl">My Owned Asset Vault</div>
-            <ul class="p-2" >
-                <li class="border-b mb-2"> <a wire:navigate href="{{ route('asset.listing') }}" @class(['text-blue-600 font-semibold' => request()->is('home')])>Assets & Liabilities</a></li>
-                <li> <a wire:navigate href="/ord" @class(['text-blue-600 font-semibold' => request()->is('ord')])>Our Property</a></li>
-                <li> <a wire:navigate href="/lif" @class(['text-blue-600 font-semibold' => request()->is('lif')])>Our Shares</a></li>
-                <li> <a wire:navigate href="/stu" @class(['text-blue-600 font-semibold' => request()->is('stu')])>Our Liabilities</a></li>
-                <li> <a wire:navigate href="/inst" @class(['text-blue-600 font-semibold' => request()->is('inst')])>Institutional Members</a></li>
-
+            <ul class="p-4" >
+                <li></li>
+                <li> <a wire:navigate href="{{ route('asset.listing',['type' => '']) }}" 
+                    @class(['text-blue-600 font-semibold' => request()->is('asset/listing')])>Assets & Liabilities</a></li>
+                <div class="pl-2">
+                    <li class="border-b mb-2 pt-2 font-semibold">Assets</li>
+                    @foreach(App\Enums\Assets\AssetType::cases() as $item)
+                    @if($item->assetClass() === 'Asset')
+                    <li> <a wire:navigate href="{{ route('asset.listing',['type' => $item->name ]) }}" @class(['text-blue-600 font-semibold' => request()->is('{{ $item->name }}')])>{{ $item->label() }}</a></li>
+                    @endif
+                    @endforeach
+                </div>
+                <div class="pl-2">
+                    <li class="border-b mb-2 pt-4 font-semibold">Liabilities</li>
+                    @foreach(App\Enums\Assets\AssetType::cases() as $item)
+                    @if($item->assetClass() === 'Liability')
+                    <li> <a wire:navigate href="{{ route('asset.listing',['type' => $item->name ]) }}" @class(['text-blue-600 font-semibold' => request()->is('{{ $item->name }}')])>{{ $item->label() }}</a></li>
+                    @endif
+                    @endforeach
+                </div>
                 <br>
                 <li class="border-b mb-2"> <a wire:navigate href="{{ route('transaction.listing') }}" @class(['text-blue-600 font-semibold' => request()->is('/transactions/index')])>All Transactions</a></li>
                 <br>

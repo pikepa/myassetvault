@@ -11,8 +11,8 @@ enum AssetType: string
     case Car = 'car';
     case Caravan = 'caravan';
     case Boat = 'boat';
-    case Mortgage = 'mortgage';
     case Membership = 'membership';
+    case Mortgage = 'mortgage';
     case Credit_Card = 'credit_card';
 
     public function assetClass()
@@ -25,8 +25,8 @@ enum AssetType: string
              static::Car => 'Asset',
              static::Caravan => 'Asset',
              static::Boat => 'Asset',
-             static::Membership => 'Asset',
              static::Mortgage => 'Liability',
+             static::Membership => 'Asset',
              static::Credit_Card => 'Liability',
         };
     }
