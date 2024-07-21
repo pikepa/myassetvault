@@ -2,15 +2,20 @@
     <div class="flex h-screen flex-col">
         <div class="p-2 py-4 rounded bg-blue-400 text-center text-xl">My Owned Asset Vault</div>
             <ul class="p-4" >
-                <li></li>
                 <li> <a wire:navigate href="{{ route('asset.listing',['type' => '']) }}" 
                     @class(['text-blue-600 font-semibold' => request()->is('asset/listing')])>Assets & Liabilities</a></li>
                 <div class="pl-2">
-                    <li class="border-b mb-2 pt-2 font-semibold">Assets</li>
+                    <div class="border-b mb-2 pt-2 font-semibold">Assets</div>
                     @foreach(App\Enums\Assets\AssetType::cases() as $item)
-                    @if($item->assetClass() === 'Asset')
-                    <li> <a wire:navigate href="{{ route('asset.listing',['type' => $item->name ]) }}" @class(['text-blue-600 font-semibold' => request()->is('{{ $item->name }}')])>{{ $item->label() }}</a></li>
-                    @endif
+                        @if($item->assetClass() === 'Asset')
+                        <li> <a wire:navigate href="{{ route('asset.listing',['type' => $item->name ]) }}" 
+                            @class([
+                            'text-blue-600 font-semibold' => request()->routeIs('asset.listing') && request()->segment(3) == $item->name
+                        ])                            >
+                            {{ $item->label() }}
+                        </a>
+                    </li>
+                        @endif
                     @endforeach
                 </div>
                 <div class="pl-2">

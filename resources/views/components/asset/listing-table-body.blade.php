@@ -1,12 +1,6 @@
 <tbody class="divide-y divide-gray-200 bg-white text-gray-700">
     @foreach($assets as $asset)
     <tr wire:key="$asset->id">
-        <td class="whitespace-nowrap  ">
-            <div
-            class='rounded-full -ml-1 py-0.5 pl-4 pr-4 inline-flex font-medium  text-sm     opacity-75'>
-            <div>{{ $asset->asset_type->label() }} </div>
-        </div>
-    </td>
         <td class="whitespace-nowrap p-3 text-sm">
             <div class="flex gap-1">{{ $asset->name}}</div>
         </td>

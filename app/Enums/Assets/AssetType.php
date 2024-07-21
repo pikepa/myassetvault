@@ -5,7 +5,7 @@ namespace App\Enums\Assets;
 enum AssetType: string
 {
     case Property = 'property';
-    case Shares = 'shares';
+    case Share = 'shares';
     case Gold = 'gold';
     case Account = 'account';
     case Car = 'car';
@@ -19,14 +19,14 @@ enum AssetType: string
     {
         return match ($this) {
             static::Property => 'Asset',
-             static::Shares => 'Asset',
+             static::Share => 'Asset',
              static::Gold => 'Asset',
              static::Account => 'Asset',
              static::Car => 'Asset',
              static::Caravan => 'Asset',
              static::Boat => 'Asset',
-             static::Mortgage => 'Liability',
              static::Membership => 'Asset',
+             static::Mortgage => 'Liability',
              static::Credit_Card => 'Liability',
         };
     }

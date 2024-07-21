@@ -1,11 +1,11 @@
 <x-listings.header name="Owner Asset & Liability">
     <!-- search And Add Button -->
       <x-asset.search />
-
+      <div class="text-xl font-semibold">Asset Type : {{ request()->segment(3) }}</div>
     <div class="relative">
         <table class="min-w-full table-fixed divide-y divide-gray-300 text-gray-800">
                 <!-- foreach Asset Type -->
-                <x-asset.listing-table-head :$sortCol :$sortAsc/>  
+                <x-asset.listing-table-head :$sortCol :$sortAsc :$asset_type/>  
 
                 <x-asset.listing-table-body :$assets />
         </table>

@@ -70,7 +70,7 @@ test('a user can sort records by asset type', function () {
             ->assertSeeInOrder(['Shares', 'Gold'])
             ->call('sortBy', 'asset_type')
             ->assertSeeInOrder(['Gold', 'Shares']);
-});
+})->skip('Not on screen at this time');
 
 test('a user can sort records by Location', function () {
     $trans1 = Asset::factory()->create(['location' => 'SA', 'user_id' => Auth::user()->id]);

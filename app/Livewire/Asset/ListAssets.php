@@ -15,6 +15,7 @@ class ListAssets extends Component
     use WithPagination;
 
     public $search = '';
+
     public $asset_type = '';
 
     #[Url]
@@ -90,10 +91,10 @@ class ListAssets extends Component
 
     public function render()
     {
-        // Original Query 
+        // Original Query
         //  $query = auth->user->assetsAsset::with('owner')->get()->toquery();
         $query = Auth::user()->assets->toquery();
- 
+
         $query = $this->applyFilter($query);
         $query = $this->applySearch($query);
         $query = $this->applySorting($query);
@@ -102,8 +103,9 @@ class ListAssets extends Component
             'assets' => $query->paginate(12),
         ]);
     }
+
     public function mount($type = '')
     {
-        $this->asset_type  = $type;
+        $this->asset_type = $type;
     }
 }
