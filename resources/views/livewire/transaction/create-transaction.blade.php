@@ -111,7 +111,7 @@
                     </div>
                     
                     <label class="flex flex-col gap-2">
-                        <h3 class="font-medium text-slate-700 text-base">Payment Status<span class="text-red-500 opacity-75" aria-hidden="true"> *</span></h3>
+                        <h3 class="font-medium text-slate-700 text-base">Valuation Status<span class="text-red-500 opacity-75" aria-hidden="true"> *</span></h3>
             
                         <select
                         wire:model.blur="form.status"

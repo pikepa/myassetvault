@@ -21,7 +21,6 @@ class CreateTransaction extends Component
     public function mount($trans = null)
     {
         $this->form->setTransaction($trans);
-
         if ($trans) {
             $this->pageTitle = 'Edit Valuation';
         }
