@@ -3,18 +3,18 @@
 namespace App\Livewire\Transaction;
 
 use App\Livewire\Forms\TransactionForm;
-use App\Models\Party;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-#[Title('Add Transaction')]
+#[Title('Add Valuation')]
 class CreateTransaction extends Component
 {
     public TransactionForm $form;
 
-    public $pageTitle = 'Add Transaction';
+    public $pageTitle = 'Add Valuation';
 
-    public $parties;
+    public $assets;
 
     public $showSuccessIndicator = false;
 
@@ -23,15 +23,17 @@ class CreateTransaction extends Component
         $this->form->setTransaction($trans);
 
         if ($trans) {
-            $this->pageTitle = 'Edit Transaction';
+            $this->pageTitle = 'Edit Valuation';
         }
-        $this->parties = Party::orderBy('firstname')->get();
+        $this->assets = Auth::user()->activeAssets;
     }
 
     public function save()
     {
         $this->form->update();
         $this->showSuccessIndicator = true;
+
+        return redirect('/transactions/index', );
     }
 
     public function render()

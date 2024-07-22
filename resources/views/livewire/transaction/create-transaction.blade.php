@@ -6,9 +6,9 @@
             </div>
             <form wire:submit="save" class="min-w-[30rem] flex flex-col gap-4 bg-white rounded-lg shadow p-4">
                 <label class="flex flex-col gap-2">
-                    <h3 class="font-medium text-slate-700 text-base">Party <span class="text-red-500 opacity-75" aria-hidden="true"> *</span></h3>
+                    <h3 class="font-medium text-slate-700 text-base">Asset <span class="text-red-500 opacity-75" aria-hidden="true"> *</span></h3>
                     <select
-                        wire:model="form.party_id"
+                        wire:model="form.asset_id"
                         @class([
                             'px-3 py-2 rounded-lg',
                             'border border-slate-300' => $errors->missing('form.party_id'),
@@ -19,16 +19,17 @@
                             aria-description="{{ $message }}"
                         @enderror
                     >
-                        <option value="" selected >Select the Party</option>
+                        <option value="" selected >Select the Asset</option>
         
-                        @foreach ($parties as $party)
-                            <option value="{{ $party->id}}">{{ $party->fullname }}</option>
+                        @foreach ($assets as $asset)
+                            <option value="{{ $asset->id}}">{{ $asset->name }}</option>
                         @endforeach
                     </select>
-                    @error('form.party_id')
+                    @error('form.asset_id')
                     <p class="text-sm text-red-500" aria-live="assertive">{{ $message }}</p>
                     @enderror
                 </label>
+
                 <div class="flex flex-row justify-start gap-4">
                     <div class="w-48 flex flex-col gap-2">
                         <h3 class="font-medium text-slate-700 text-base">Transaction Date <span class="text-red-500 opacity-75" aria-hidden="true"> *</span></h3>
@@ -41,43 +42,15 @@
                     <div class="flex flex-col flex-1 gap-2">
                         <h3 class="font-medium text-slate-700 text-base">Document No.<span class="text-red-500 opacity-75" aria-hidden="true"> *</span></h3>
                         <input wire:model="form.document_ref" class="px-3 py-2 border border-slate-300 rounded-lg"
-                            placeholder="Receipt No.">
+                            placeholder="Doc Ref.">
                             @error('form.document_ref')
                             <p class="text-sm text-red-500" aria-live="assertive">{{ $message }}</p>
                             @enderror                        </div>
 
                 </div>
                 <div class="flex flex-row justify-start gap-4">
-                    <div class="flex flex-col gap-2">
-
-                        <label class="flex flex-col gap-2">
-                            <h3 class="font-medium text-slate-700 text-base">Membership <span class="text-red-500 opacity-75" aria-hidden="true"> *</span></h3>
-                            <select
-                            wire:model.blur="form.membership_type"
-                            @class([
-                                'w-48 px-3 py-2 rounded-lg',
-                                'border border-slate-300' => $errors->missing('form.membership_type'),
-                                'border-2 border-red-500' => $errors->has('form.membership_type'),
-                            ])
-                            @error('form.membership_type')
-                                aria-invalid="true"
-                                aria-description="{{ $message }}"
-                            @enderror
-                            > 
-
-                        <option value="" selected >Select Membership</option>
-                        @foreach (App\Enums\Transactions\Membership::cases() as $type)
-                            <option value="{{ $type->value }}">{{ $type->label() }}</option>
-                        @endforeach
-                        </select>
-                            @error('form.membership_type')
-                            <p class="text-sm text-red-500" aria-live="assertive">{{ $message }}</p>
-                            @enderror
-                        </label>
-                    </div>
                     <label class="flex flex-col gap-2">
-                        <h3 class=" font-medium text-slate-700 text-base">Year <span class="text-red-500 opacity-75" aria-hidden="true"> *</span></h3>
-            
+                        <h3 class=" font-medium text-slate-700 text-base">Valuation Year <span class="text-red-500 opacity-75" aria-hidden="true"> *</span></h3>
                         <select
                         wire:model.blur="form.year"
                         @class([
@@ -92,7 +65,7 @@
                     >
                         <option value="" selected disabled>Select year </option>
         
-                        @foreach (App\Enums\Transactions\Year::cases() as $year)
+                        @foreach (App\Enums\Common\Year::cases() as $year)
                             <option value="{{ $year->value}}">{{ $year }}</option>
                         @endforeach
                     </select>
@@ -100,16 +73,43 @@
                         <p class="text-sm text-red-500" aria-live="assertive">{{ $message }}</p>
                         @enderror
                     </label>
+
+                    <label class="flex flex-col gap-2">
+                        <h3 class=" font-medium text-slate-700 text-base">Month<span class="text-red-500 opacity-75" aria-hidden="true"> *</span></h3>
+                        <select
+                        wire:model.blur="form.month"
+                        @class([
+                            'w-32 px-3 py-2 rounded-lg',
+                            'border border-slate-300' => $errors->missing('form.month'),
+                            'border-2 border-red-500' => $errors->has('form.month'),
+                        ])
+                        @error('form.month')
+                            aria-invalid="true"
+                            aria-description="{{ $message }}"
+                        @enderror
+                    >
+                        <option value="" selected disabled>Select month </option>
+        
+                        @foreach (App\Enums\Common\Month::cases() as $month)
+                            <option value="{{ $month->value}}">{{ $month }}</option>
+                        @endforeach
+                    </select>
+                        @error('form.month')
+                        <p class="text-sm text-red-500" aria-live="assertive">{{ $message }}</p>
+                        @enderror
+                    </label>
                 </div>
+
                 <div class="flex flex-row justify-start gap-4">
                     <div class="w-48 flex flex-col gap-2">
-                        <h3 class="font-medium text-slate-700 text-base">Amount Paid<span class="text-red-500 opacity-75" aria-hidden="true"> *</span> </h3>
-                        <input wire:model="form.amount" class="px-3 py-2 border border-slate-300 rounded-lg"
+                        <h3 class="font-medium text-slate-700 text-base">Current Value<span class="text-red-500 opacity-75" aria-hidden="true"> *</span> </h3>
+                        <input wire:model="form.current_value" class="px-3 py-2 border border-slate-300 rounded-lg"
                             placeholder="Amount in cents">
-                            @error('form.amount')
+                            @error('form.current_value')
                             <p class="text-sm text-red-500" aria-live="assertive">{{ $message }}</p>
                             @enderror
                     </div>
+                    
                     <label class="flex flex-col gap-2">
                         <h3 class="font-medium text-slate-700 text-base">Payment Status<span class="text-red-500 opacity-75" aria-hidden="true"> *</span></h3>
             

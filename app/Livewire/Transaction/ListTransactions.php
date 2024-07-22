@@ -49,12 +49,12 @@ class ListTransactions extends Component
     {
         if ($this->sortCol) {
             $column = match ($this->sortCol) {
-                'party_id' => 'party_id',
+                // 'party->id' => 'party-id',
                 'transaction_date' => 'transaction_date',
                 'document_ref' => 'document_ref',
                 'status' => 'status',
-                'membership_type' => 'membership_type',
                 'year' => 'year',
+                'month' => 'month',
                 'created_at' => 'created_at',
             };
             $query->orderBy($column, $this->sortAsc ? 'asc' : 'desc');
@@ -67,9 +67,11 @@ class ListTransactions extends Component
     {
         return $this->search === ''
             ? $query
-            : $query->whereHas('owner', function ($query) {
-                $query->where('firstname', 'like', '%'.$this->search.'%')
-                    ->orWhere('surname', 'like', '%'.$this->search.'%');
+            : $query->whereHas('asset', function ($query) {
+                $query->where('name', 'like', '%'.$this->search.'%')
+                    ->orWhere('document_ref', 'like', '%'.$this->search.'%')
+                    ->orWhere('year', 'like', '%'.$this->search.'%')
+                    ->orWhere('month', 'like', '%'.$this->search.'%');
             });
     }
 
@@ -96,7 +98,7 @@ class ListTransactions extends Component
 
     public function render()
     {
-        $query = Transaction::with('owner')->get()->toquery();
+        $query = Transaction::with('asset')->get()->toquery();
 
         // if ($this->memb_type != '') {
         //     $query = $this->applyFilter($query);

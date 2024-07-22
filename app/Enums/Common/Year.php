@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Enums\Transactions;
+namespace App\Enums\Common;
 
 enum Year : string
 {
-    case _9999 = 'Life';
     case _2020 = '2020';
     case _2022 = '2022';
     case _2023 = '2023';
@@ -25,7 +24,6 @@ enum Year : string
     public function color()
     {
         return match ($this) {
-            static::_9999 => 'green',
             static::_2020 => 'orange',
             static::_2021 => 'orange',
             static::_2022 => 'orange',

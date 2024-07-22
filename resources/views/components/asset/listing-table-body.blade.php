@@ -10,11 +10,12 @@
             <div>{{ $asset->location }} </div>
         </div>
     </td>
-        <td class="whitespace-nowrap p-3 text-sm">
-            <div class="flex gap-1">{{ $asset->qty}}</div>
-        </td>
+
         <td class="whitespace-nowrap p-3 text-sm">
             <div class="flex flex-row-reverse gap-1">{{ $asset->acquiredValueForHumans() }}</div>
+        </td>
+        <td class="whitespace-nowrap p-3 text-sm">
+            <div class="flex flex-row-reverse gap-1">{{ $asset->currentValueForHumans() }}</div>
         </td>
         <td class="whitespace-nowrap p-3 text-sm">
             <div

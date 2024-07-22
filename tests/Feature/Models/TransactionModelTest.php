@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Party;
+use App\Models\Asset;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Schema;
 
@@ -8,19 +8,20 @@ test('database has expected columns', function () {
     $this->assertTrue(
           Schema::hasColumns('transactions', [
               'id',
-              'party_id',
+              'asset_id',
               'transaction_date',
               'year',
-              'membership_type',
-              'amount',
+              'month',
+              'current_value',
               'status',
               'comments',
           ]), 1);
 });
 
-it('a transaction belongs to a party', function () {
+it('a transaction belongs to an asset', function () {
+    Asset::factory()->create();
     $transaction = Transaction::factory()
         ->create();
-    expect($transaction->owner)
-        ->toBeInstanceOf(Party::class);
+    expect($transaction->asset)
+        ->toBeInstanceOf(Asset::class);
 });

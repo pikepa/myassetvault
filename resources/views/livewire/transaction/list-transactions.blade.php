@@ -7,15 +7,13 @@
                 <thead>
                     <tr class="space-x-4">
                         <th class="p-3 text-left text-sm font-semibold text-gray-900">
-                            <x-sorting.sortable column="party_id" :$sortCol :$sortAsc>
-                                <div>Name in Full</div>
-                            </x-sorting.sortable>
-                        </th>                        
-                        <th class="p-3 text-left text-sm font-semibold text-gray-900">
                             <x-sorting.sortable column="transaction_date" :$sortCol :$sortAsc>
                                 <div>Date</div>
                             </x-sorting.sortable>
                         </th>
+                        <th class="p-3 text-left text-sm font-semibold text-gray-900">
+                                <div>Asset Name</div>
+                        </th>                        
                         <th class="p-3 text-left text-sm font-semibold text-gray-900">
                             <x-sorting.sortable column="document_ref" :$sortCol :$sortAsc>
                                 <div>Doc Ref.</div>
@@ -23,17 +21,19 @@
                         </th>
 
                         <th class="p-3 text-left text-sm font-semibold text-gray-900">
-                            <x-sorting.sortable column="membership_type" :$sortCol :$sortAsc>
-                                <div>Membership</div>
-                            </x-sorting.sortable>
-                        </th>
-                        <th class="p-3 text-left text-sm font-semibold text-gray-900">
                             <x-sorting.sortable column="year" :$sortCol :$sortAsc>
-                                <div>Sub Year</div>
+                                <div>Year</div>
                             </x-sorting.sortable>
                         </th>
                         <th class="p-3 text-left text-sm font-semibold text-gray-900">
-                                <div>Amount</div>
+                            <x-sorting.sortable column="month" :$sortCol :$sortAsc>
+                                <div>Month</div>
+                            </x-sorting.sortable>
+                        </th>
+                        <th class="p-3 text-left text-sm font-semibold text-gray-900">
+                            <x-sorting.sortable column="month" :$sortCol :$sortAsc>
+                                <div>Valuation</div>
+                            </x-sorting.sortable>
                         </th>
                         <th class="p-3 text-left text-sm font-semibold text-gray-900">
                             <x-sorting.sortable column="status" :$sortCol :$sortAsc>
@@ -45,9 +45,7 @@
                 <tbody class="divide-y divide-gray-200 bg-white text-gray-700">
                     @foreach($transactions as $transaction)
                     <tr wire:key="$transaction->id">
-                        <td class="whitespace-nowrap p-3 text-sm">
-                            <div class="flex gap-1">{{ $transaction->owner->fullname }}</div>
-                        </td>
+
                         <td class="whitespace-nowrap  ">
                             <div
                                 class='rounded-full -ml-1 py-0.5 pl-4 pr-4 inline-flex font-medium  text-sm     opacity-75'>
@@ -55,20 +53,24 @@
                             </div>
                         </td>
                         <td class="whitespace-nowrap p-3 text-sm">
+                            <div class="flex gap-1">{{ $transaction->asset->name }}</div>
+                        </td>
+                        <td class="whitespace-nowrap p-3 text-sm">
                             <div class="flex gap-1">{{ $transaction->document_ref}}</div>
                         </td>
 
-                        <td class="whitespace-nowrap p-3 ">
-                            <div
-                                class='rounded-full py-0.5 pl-4 pr-4 inline-flex font-medium text-sm  text-{{ $transaction->membership_type->color() }}-600  bg-{{ $transaction->membership_type->color() }}-100 opacity-75'>
-                                <div class="flex gap-1">{{ $transaction->membership_type->name }} </div>
-                            </div>              
-                        </td>
+
 
                         <td class="whitespace-nowrap p-3 ">
                             <div
-                                class='rounded-full py-0.5 pl-4 pr-4 inline-flex font-medium text-sm text-{{ $transaction->year->color() }}-600  bg-{{ $transaction->year->color() }}-100  opacity-75'>
+                                class='rounded-full py-0.5 pl-4 pr-4 inline-flex font-medium text-sm text-blue-600  bg-blue-100  opacity-75'>
                                 <div class="flex gap-1">{{ $transaction->year }} </div>
+                            </div>              
+                        </td>
+                        <td class="whitespace-nowrap p-3 ">
+                            <div
+                                class='rounded-full py-0.5 pl-4 pr-4 inline-flex font-medium text-sm text-blue-600  bg-blue-100  opacity-75'>
+                                <div class="flex gap-1">{{ $transaction->month }} </div>
                             </div>              
                         </td>
 
@@ -76,7 +78,7 @@
                         <td class="whitespace-nowrap p-3 ">
                                 <div
                                 class='rounded-full py-0.5 pl-4 pr-4 inline-flex font-medium text-sm   opacity-75'>
-                                <div class="flex  gap-1">{{ $transaction->amount_for_humans }} </div>
+                                <div class="flex  gap-1">{{ $transaction->current_value_for_humans }} </div>
                                 </div>
                         </td>
 

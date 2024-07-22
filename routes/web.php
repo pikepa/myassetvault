@@ -3,8 +3,6 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Livewire\Asset\ListAssets;
-use App\Livewire\Party\CreateParty;
-use App\Livewire\Party\Index;
 use App\Livewire\Transaction\CreateTransaction;
 use App\Livewire\Transaction\ListTransactions;
 use App\Livewire\Users\CreateUser;
@@ -22,9 +20,6 @@ Route::post('logout', LogoutController::class)->middleware('auth')->name('logout
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', ListAssets::class)->middleware('auth')->name('party.listing');
-    Route::get('/add', CreateParty::class);
-    Route::get('/edit/{party}', CreateParty::class);
-    Route::get('/{memb}', Index::class)->name('party.index.select');
     Route::get('/transactions/index', ListTransactions::class)->name('transaction.listing');
     Route::get('/transactions/add', CreateTransaction::class)->name('transaction.add');
     Route::get('/transactions/edit/{trans}', CreateTransaction::class)->name('transaction.edit');

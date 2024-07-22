@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Asset;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,17 +14,15 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            //  $table->unsignedInteger('party_id');
             $table->date('transaction_date');
             $table->string('document_ref');
             $table->string('year');
-            $table->string('membership_type');
-            $table->smallInteger('amount');
+            $table->string('month');
+            $table->foreignIdFor(Asset::class);
+            $table->bigInteger('current_value');
             $table->string('status');
             $table->text('comments');
             $table->timestamps();
-
-            $table->foreignId('party_id')->references('id')->on('parties')->onDelete('cascade');
         });
     }
 

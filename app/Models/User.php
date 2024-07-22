@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Enums\Assets\AssetStatus;
 use App\Enums\Users\Role;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -48,6 +49,11 @@ class User extends Authenticatable
 
     public function assets(): HasMany
     {
-        return $this->hasMany(Asset::class);
+        return $this->hasMany(Asset::class)->orderBy('name');
+    }
+
+    public function activeAssets(): HasMany
+    {
+        return $this->hasMany(Asset::class)->whereStatus(AssetStatus::Current)->orderBy('name');
     }
 }

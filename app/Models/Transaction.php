@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
+use App\Enums\Common\Month;
+use App\Enums\Common\Year;
 use App\Enums\Transactions\Membership;
 use App\Enums\Transactions\Status;
-use App\Enums\Transactions\Year;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -18,6 +19,7 @@ class Transaction extends Model
         'membership_type' => Membership::class,
         'status' => Status::class,
         'year' => Year::class,
+        'month' => Month::class,
         'transaction_date' => 'date:Y-m-d',
     ];
 
@@ -26,13 +28,13 @@ class Transaction extends Model
         return $this->transaction_date->format('M d, Y');
     }
 
-    public function getAmountForHumansAttribute()
+    public function getCurrentValueForHumansAttribute()
     {
-        return Number::currency(($this->amount / 100), in: 'MYR');
+        return Number::currency(($this->current_value / 100), in: 'AUD');
     }
 
-    public function owner(): BelongsTo
+    public function asset(): BelongsTo
     {
-        return $this->belongsTo(Party::class, 'party_id');
+        return $this->belongsTo(Asset::class, 'asset_id');
     }
 }

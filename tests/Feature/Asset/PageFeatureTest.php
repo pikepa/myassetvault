@@ -14,14 +14,14 @@ it('an auth user can load the Assets Listing Page', function () {
     Asset::factory()->create(['user_id' => Auth::user()->id]);
     $this->get('/asset/listing')->assertStatus(200)
     ->assertSeeLivewire(Navigation::class)
+    ->assertSeeLivewire(ListAssets::class)
     ->assertSee('Asset & Liability Listing')
     ->assertSee('Search Asset Name')
-    ->assertSee('Name')
+    ->assertSee('Name in Full')
     ->assertSee('Location')
-    ->assertSee('Qty')
-    ->assertSee('Value')
-    ->assertSee('Status')
-    ->assertSee('Owner');
+    ->assertSee('Acquired Value')
+    ->assertSee('Current Value')
+    ->assertSee('Status');
 });
 
 test('it only displays assets for the signed in user', function () {
