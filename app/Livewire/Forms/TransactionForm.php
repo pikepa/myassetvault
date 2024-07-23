@@ -54,13 +54,7 @@ class TransactionForm extends Form
         $this->transaction->current_value = $this->current_value;
         $this->transaction->status = $this->status;
         $this->transaction->comments = $this->comments;
-
         $this->transaction->save();
-        // $owner = Party::find($this->party_id);
-        // $owner->trans_member = $this->membership_type;
-        // $owner->trans_year = $this->year;
-        // $owner->trans_status = $this->status;
-        // $owner->save();
     }
 
     // used when form being initialised on edit

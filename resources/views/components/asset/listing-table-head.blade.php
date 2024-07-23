@@ -10,6 +10,11 @@
                 <div>Location</div>
             </x-sorting.sortable>
         </th>
+        <th class="p-3 text-left text-sm font-semibold text-gray-900">
+            <x-sorting.sortable column="year_acquired" :$sortCol :$sortAsc>
+                <div>Year Acquired</div>
+            </x-sorting.sortable>
+        </th>
         <th class="p-3 text-right text-sm font-semibold text-gray-900">
                 <div>Acquired Value</div>
         </th>

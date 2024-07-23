@@ -4,6 +4,9 @@ namespace Database\Factories;
 
 use App\Enums\Assets\AssetStatus;
 use App\Enums\Assets\AssetType;
+use App\Enums\Assets\Location;
+use App\Enums\Common\Month;
+use App\Enums\Common\Year;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -24,7 +27,9 @@ class AssetFactory extends Factory
             'description' => fake()->paragraph(2),
             'user_id' => User::factory()->create(),
             'asset_type' => fake()->randomElement(AssetType::class),
-            'location' => fake()->randomElement(['AUS', 'UK', 'UAE', 'SA']),
+            'location' => fake()->randomElement(Location::class),
+            'acquired_year' => fake()->randomElement(Year::class),
+            'acquired_month' => fake()->randomElement(Month::class),
             'qty' => fake()->numberBetween($min = 1, $max = 50),
             'acquired_value' => (fake()->numberBetween($min = 1, $max = 50) * 100),
             'status' => fake()->randomElement(AssetStatus::class),

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Livewire\Asset\CreateAsset;
 use App\Livewire\Asset\ListAssets;
 use App\Livewire\Transaction\CreateTransaction;
 use App\Livewire\Transaction\ListTransactions;
@@ -19,7 +20,9 @@ Route::post('login', [LoginController::class, 'store'])->name('login.store');
 Route::post('logout', LogoutController::class)->middleware('auth')->name('logout');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/home', ListAssets::class)->middleware('auth')->name('party.listing');
+    Route::get('/asset/listing', ListAssets::class)->middleware('auth')->name('asset.listing');
+    Route::get('/asset/add', CreateAsset::class)->middleware('auth')->name('asset.add');
+    Route::get('/asset/edit/{asset}', CreateAsset::class)->middleware('auth')->name('asset.edit');
     Route::get('/transactions/index', ListTransactions::class)->name('transaction.listing');
     Route::get('/transactions/add', CreateTransaction::class)->name('transaction.add');
     Route::get('/transactions/edit/{trans}', CreateTransaction::class)->name('transaction.edit');

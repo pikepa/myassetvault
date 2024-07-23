@@ -86,7 +86,7 @@ class ListAssets extends Component
 
     public function edit($id)
     {
-        return redirect('/transactions/edit/'.$id);
+        return redirect('/asset/edit/'.$id);
     }
 
     public function render()

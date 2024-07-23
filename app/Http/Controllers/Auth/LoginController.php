@@ -15,7 +15,7 @@ class LoginController extends Controller
     public function store(LoginRequest $request)
     {
         if (auth()->attempt($request->validated())) {
-            return redirect('/home');
+            return redirect('/asset/listing');
         }
 
         return back()

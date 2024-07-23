@@ -4,6 +4,9 @@ namespace App\Models;
 
 use App\Enums\Assets\AssetStatus;
 use App\Enums\Assets\AssetType;
+use App\Enums\Assets\Location;
+use App\Enums\Common\Month;
+use App\Enums\Common\Year;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -16,6 +19,9 @@ class Asset extends Model
 
     protected $casts = [
         'asset_type' => AssetType::class,
+        'location' => Location::class,
+        'acquired_year' => Year::class,
+        'acquired_month' => Month::class,
         'status' => AssetStatus::class,
     ];
 

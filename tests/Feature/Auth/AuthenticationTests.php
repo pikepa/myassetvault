@@ -7,7 +7,7 @@ it('has a login page', function () {
                         ->assertSee('Password');
 });
 test('a guest trying to load the home page is redirected to Login ', function () {
-    $this->get('/home')->assertRedirect('/login');
+    $this->get('/asset/listing')->assertRedirect('/login');
 });
 test('a guest trying to load the transaction page is redirected to Login ', function () {
     $this->get('/transactions/index')->assertRedirect('/login');

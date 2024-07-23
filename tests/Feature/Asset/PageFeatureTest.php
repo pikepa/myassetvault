@@ -12,6 +12,7 @@ beforeEach(function () {
 
 it('an auth user can load the Assets Listing Page', function () {
     Asset::factory()->create(['user_id' => Auth::user()->id]);
+
     $this->get('/asset/listing')->assertStatus(200)
     ->assertSeeLivewire(Navigation::class)
     ->assertSeeLivewire(ListAssets::class)
@@ -73,7 +74,7 @@ test('a user can sort records by asset type', function () {
 })->skip('Not on screen at this time');
 
 test('a user can sort records by Location', function () {
-    $trans1 = Asset::factory()->create(['location' => 'SA', 'user_id' => Auth::user()->id]);
+    $trans1 = Asset::factory()->create(['location' => 'GBR', 'user_id' => Auth::user()->id]);
     $trans2 = Asset::factory()->create(['location' => 'UAE', 'user_id' => Auth::user()->id]);
     Livewire::test(ListAssets::class)
             ->assertSeeInOrder([$trans1->location, $trans2->location])

@@ -3,6 +3,7 @@
 namespace App\Livewire\Transaction;
 
 use App\Livewire\Forms\TransactionForm;
+use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -20,9 +21,11 @@ class CreateTransaction extends Component
 
     public function mount($trans = null)
     {
-        $this->form->setTransaction($trans);
         if ($trans) {
+            $this->form->setTransaction($trans);
             $this->pageTitle = 'Edit Valuation';
+        } else {
+            $this->form->transaction = Transaction::make();
         }
         $this->assets = Auth::user()->activeAssets;
     }

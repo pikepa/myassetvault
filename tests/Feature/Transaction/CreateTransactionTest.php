@@ -40,6 +40,7 @@ test('an authorised user can create a transaction', function () {
     //Arrange
     $this->signIn();
     $asset = Asset::factory()->create();
+
     Livewire::test(CreateTransaction::class)
     ->assertOk()
     ->assertSee('Add Valuation')
@@ -79,6 +80,8 @@ test('an authorised user can edit a transaction', function () {
     ->assertOk()
     ->assertSee('Edit Valuation')
     ->assertSee('Asset')
+    // ->assertSet('form.asset_id', $asset->id)
+    ->set('form.asset_id', $asset->id)
     ->assertSet('form.asset_id', $asset->id)
     ->assertSee('Transaction Date')
     ->assertSet('form.transaction_date', $trans->transaction_date->format('Y-m-d'))

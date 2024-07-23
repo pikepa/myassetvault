@@ -10,6 +10,12 @@
             <div>{{ $asset->location }} </div>
         </div>
     </td>
+    <td class="whitespace-nowrap  ">
+        <div
+            class='rounded-full -ml-1 py-0.5 pl-4 pr-4 inline-flex font-medium  text-sm     opacity-75'>
+            <div>{{ $asset->acquired_year }} </div>
+        </div>
+    </td>
 
         <td class="whitespace-nowrap p-3 text-sm">
             <div class="flex flex-row-reverse gap-1">{{ $asset->acquiredValueForHumans() }}</div>

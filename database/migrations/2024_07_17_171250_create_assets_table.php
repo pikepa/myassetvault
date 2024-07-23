@@ -15,13 +15,15 @@ return new class extends Migration
         Schema::create('assets', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('asset_type');
+            $table->text('asset_type');
             $table->text('description');
             $table->text('location');
+            $table->text('acquired_year');
+            $table->text('acquired_month');
             $table->integer('qty')->default(1);
             $table->bigInteger('acquired_value');
             $table->foreignIdFor(User::class)->constrained();
-            $table->string('status');
+            $table->text('status');
             $table->timestamps();
         });
     }
