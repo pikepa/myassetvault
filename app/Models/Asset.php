@@ -24,6 +24,10 @@ class Asset extends Model
         'acquired_month' => Month::class,
         'status' => AssetStatus::class,
     ];
+    public function getAcquiredDateForHumansAttribute()
+    {
+        return $this->acquired_month->label()  . ' ' . $this->acquired_year->label() ;
+    }
 
     public function acquiredValueForHumans()
     {

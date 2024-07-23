@@ -13,7 +13,7 @@
     <td class="whitespace-nowrap  ">
         <div
             class='rounded-full -ml-1 py-0.5 pl-4 pr-4 inline-flex font-medium  text-sm     opacity-75'>
-            <div>{{ $asset->acquired_year }} </div>
+            <div>{{ $asset->acquired_date_for_humans }} </div>
         </div>
     </td>
 
